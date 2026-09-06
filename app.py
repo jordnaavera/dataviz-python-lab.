@@ -1,3 +1,4 @@
+
 """
 app.py
 ------
@@ -37,7 +38,7 @@ from charts import (
 
 st.set_page_config(
     page_title=DATASET_NAME,
-    page_icon="📊",
+    page_icon="📈",
     layout="wide",
 )
 
@@ -61,13 +62,13 @@ def load_data(force_refresh: bool = False) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 # Barra lateral: título, fuente y controles globales
 # ---------------------------------------------------------------------------
-st.sidebar.title("⚙️ Panel de control")
+st.sidebar.title("Panel de control")
 st.sidebar.markdown(
     f"**Fuente de datos:** [datos.gob.cl]({DATASET_URL})\n\n"
     f"**Recurso (resource_id):**\n`{RESOURCE_ID}`"
 )
 
-if st.sidebar.button("🔄 Recargar datos desde la API"):
+if st.sidebar.button("Recargar datos desde la API"):
     load_data.clear()
     st.session_state["force_refresh"] = True
 
@@ -114,14 +115,14 @@ st.sidebar.caption(
 # ---------------------------------------------------------------------------
 # Encabezado principal
 # ---------------------------------------------------------------------------
-st.title("📊 " + DATASET_NAME)
+st.title(DATASET_NAME)
 st.caption(
     "Datos obtenidos en vivo mediante una consulta GET a la API REST (CKAN) "
     "del Portal de Datos Abiertos del Gobierno de Chile."
 )
 
 tab_resumen, tab_graficos, tab_explorador, tab_datos = st.tabs(
-    ["📌 Resumen", "📈 Gráficos", "🔎 Explorador", "🗂️ Datos crudos"]
+    ["Resumen", "Gráficos", "Explorador", "Datos crudos"]
 )
 
 # ---------------------------------------------------------------------------
@@ -221,7 +222,7 @@ with tab_datos:
 
     csv_bytes = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
-        "⬇️ Descargar datos filtrados (CSV)",
+        "Descargar datos filtrados (CSV)",
         data=csv_bytes,
         file_name="datos_filtrados.csv",
         mime="text/csv",
